@@ -20,8 +20,8 @@ public class Application {
             System.out.print("질문 : ");
             String input = sc.nextLine();
             if (input.equals("종료")) return; // 한줄은 괄호 없어도 된다
-//            String text = client.chat(input);
-//            System.out.println(text);
+            String text = client.chat(input, GroqModel.gpt_oss_120b);
+            System.out.println(text);
         }
     }
 }

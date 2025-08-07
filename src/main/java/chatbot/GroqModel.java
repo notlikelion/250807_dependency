@@ -1,8 +1,7 @@
 package chatbot;
 
 public enum GroqModel {
-    gemini_2_0_flash("gemini-2.0-flash"),
-    gemini_2_5_flash("gemini-2.5-flash");
+    gpt_oss_120b("openai/gpt-oss-120b");
 
     private final String modelName;
     GroqModel(String modelName) {
