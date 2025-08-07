@@ -22,8 +22,14 @@ public class Application {
             String input = sc.nextLine();
             if (input.equals("종료")) return; // 한줄은 괄호 없어도 된다
 //            String text = client.chat(input, GroqModel.gpt_oss_120b);
-            String text = client.search(input);
-            System.out.println(text);
+            client.search(input).stream().forEach(
+                    item -> System.out.println(
+                            "제목 : %s\n설명: %s\n링크: %s\n작성일 : %s"
+                                    .formatted(item.title(), item.description(),
+                                            item.link(), item.postdate())
+                    )
+            );
+//            System.out.println(text);
         }
     }
 }
