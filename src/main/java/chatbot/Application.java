@@ -14,7 +14,7 @@ public class Application {
 //        GeminiClient client = new GeminiClient(GeminiModel.gemini_2_0_flash,
 //                systemInstruction);
         // AIClient 추상클래스, 인터페이스
-        GroqClient client = new GroqClient();
+        GroqClient client = new GroqClient("아랍어로 대답해줘");
         Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.print("질문 : ");

@@ -14,9 +14,10 @@ public class GroqClient {
 
     final private String apiKey;
     final private HttpClient httpClient = HttpClient.newHttpClient();
-
-    public GroqClient() {
+    final private String systemInstruction;
+    public GroqClient(String systemInstruction) {
         Dotenv dotenv = Dotenv.load();
+        this.systemInstruction = systemInstruction;
         apiKey = dotenv.get("GROQ_API_KEY");
         if (apiKey == null) throw new RuntimeException("API KEY 없음");
     }
@@ -27,7 +28,9 @@ public class GroqClient {
 //        https://console.groq.com/playground?model=openai/gpt-oss-120b
         String groqURL = "https://api.groq.com/openai/v1/chat/completions";
         GroqRequestBody requestBody = new GroqRequestBody(
-                List.of(new GroqRequestBody.Message("user", prompt)),
+                List.of(
+                        new GroqRequestBody.Message("system", systemInstruction),
+                        new GroqRequestBody.Message("user", prompt)),
                 model.toString()
         );
         String bodyString = null;
