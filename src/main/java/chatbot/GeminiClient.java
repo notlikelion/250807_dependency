@@ -5,6 +5,7 @@ import com.google.genai.types.Content;
 import com.google.genai.types.GenerateContentConfig;
 import com.google.genai.types.GenerateContentResponse;
 import com.google.genai.types.Part;
+import io.github.cdimascio.dotenv.Dotenv;
 
 import java.util.List;
 
@@ -14,7 +15,9 @@ public class GeminiClient {
     private final GenerateContentConfig config;
 
     GeminiClient(GeminiModel model, String systemInstruction) {
-        String apiKey = System.getenv("GEMINI_API_KEY");
+//        String apiKey = System.getenv("GEMINI_API_KEY");
+        Dotenv dotenv = Dotenv.load();
+        String apiKey = dotenv.get("GEMINI_API_KEY");
         if (apiKey == null) throw new RuntimeException("API KEY 없음");
         client = Client.builder()
                 .apiKey(apiKey)
