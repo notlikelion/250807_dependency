@@ -15,7 +15,8 @@ public class Application {
 //                systemInstruction);
         // AIClient 추상클래스, 인터페이스
 //        GroqClient client = new GroqClient("아랍어로 대답해줘");
-        NaverBlogSearchClient client = new NaverBlogSearchClient();
+//        NaverBlogSearchClient client = new NaverBlogSearchClient();
+        NaverNewsSearchClient client = new NaverNewsSearchClient();
         Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.print("질문 : ");
@@ -25,8 +26,10 @@ public class Application {
             client.search(input).stream().forEach(
                     item -> System.out.println(
                             "제목 : %s\n설명: %s\n링크: %s\n작성일 : %s"
+//                                    .formatted(item.title(), item.description(),
+//                                            item.link(), item.postdate())
                                     .formatted(item.title(), item.description(),
-                                            item.link(), item.postdate())
+                                            item.link(), item.pubDate())
                     )
             );
 //            System.out.println(text);
