@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- XML 문법 -->
+<!-- project가 본체 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -13,5 +15,21 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    
+
+    <!--  <project> 밑에 바로 위치  -->
+    <!--  복수 형태. dependency  -->
+    <!--  dependencies => dependency -->
+    <dependencies>
+        <!--  의존성을 쓰는 방법 2가지  -->
+        <!--  1. 직접 설치 (jar) (생략)    -->
+        <!--  2. maven central => 중앙저장소에서 관련 자료를 받아서 실행 ✅ -->
+        <!-- https://mvnrepository.com/ -->
+        <!-- https://mvnrepository.com/artifact/com.google.genai/google-genai -->
+        <dependency>
+            <groupId>com.google.genai</groupId>
+            <artifactId>google-genai</artifactId>
+            <version>1.10.0</version>
+        </dependency>
+    </dependencies>
+
 </project>
