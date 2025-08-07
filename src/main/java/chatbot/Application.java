@@ -7,6 +7,9 @@ public class Application {
     public static void main(String[] args) {
         // https://github.com/googleapis/java-genai
         String GEMINI_API_KEY = System.getenv("GEMINI_API_KEY");
+        if (GEMINI_API_KEY == null) {
+            throw new RuntimeException("API_KEY 없음");
+        }
         Client client = Client.builder().apiKey(GEMINI_API_KEY).build();
         // https://ai.google.dev/gemini-api/docs/models?hl=ko
 
