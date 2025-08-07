@@ -31,7 +31,9 @@ public class NaverBlogSearchClient {
             HttpRequest httpRequest = HttpRequest.newBuilder()
                     .uri(URI.create("%s?query=%s"
                             .formatted(url, URLEncoder.encode(keyword, StandardCharsets.UTF_8))))
-                    .headers("X-Naver-Client-Id", naverClientId, "X-Naver-Client-Secret", naverClientSecret
+                    .headers(
+                            "X-Naver-Client-Id", naverClientId,
+                            "X-Naver-Client-Secret", naverClientSecret
                     )
                     .build();
             HttpResponse<String> httpResponse = httpClient.send(
@@ -44,6 +46,5 @@ public class NaverBlogSearchClient {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 }
