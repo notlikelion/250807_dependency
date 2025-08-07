@@ -35,4 +35,13 @@ public class GeminiClient {
                 .content().get()
                 .text();
     }
+    // 메서드 오버로딩
+    public String chat(String prompt, GeminiModel model) {
+        GenerateContentResponse response = client.models.generateContent(
+                model.toString(), prompt, config);
+        return response.candidates().get()
+                .get(0)
+                .content().get()
+                .text();
+    }
 }
