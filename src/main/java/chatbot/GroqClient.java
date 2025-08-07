@@ -38,11 +38,14 @@ public class GroqClient {
         }
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(URI.create(groqURL))
-                .headers(
-                        "Content-Type", "application/json", // json
-                        // 인증/인가 헤더 - Bearer Token
-                        "Authorization", "Bearer %s".formatted(apiKey)
-                )
+//                .header(
+//                        "Content-Type", "application/json"
+//                )
+//                .header(
+//                        "Authorization", "Bearer %s".formatted(apiKey)
+//                )
+                .headers("Content-Type", "application/json",
+                        "Authorization", "Bearer %s".formatted(apiKey))
                 .POST(HttpRequest.BodyPublishers.ofString(bodyString))
                 .build();
         try {
@@ -50,7 +53,15 @@ public class GroqClient {
                     httpRequest,
                     HttpResponse.BodyHandlers.ofString()
             );
-            return httpResponse.body();
+            String json = httpResponse.body();
+            GroqResponseBody data = mapper.readValue(json, GroqResponseBody.class);
+            return data.choices().get(0).message().content();
+//            return data.choices().get(0).message().reasoning();
+
+            // ObjectMapper
+            // 1. writeValueAsString -> Record, Class => JSON String
+            // 3. 무시해야할 필드가 있다면 -> @JsonIgnoreProperties(ignoreUnknown = true)
+            // 2. readValue(JSONText, 레코드/클래스.class) -> Record, Class Object
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
