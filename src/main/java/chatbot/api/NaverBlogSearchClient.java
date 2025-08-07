@@ -1,5 +1,6 @@
-package chatbot;
+package chatbot.api;
 
+import chatbot.data.NaverSearchResponseBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cdimascio.dotenv.Dotenv;
 
@@ -11,8 +12,8 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-public class NaverNewsSearchClient {
-    static final String url = "https://openapi.naver.com/v1/search/news.json";
+public class NaverBlogSearchClient {
+    static final String url = "https://openapi.naver.com/v1/search/blog.json";
 
     static final HttpClient httpClient = HttpClient.newHttpClient();
     static final ObjectMapper objectMapper = new ObjectMapper();
@@ -20,13 +21,13 @@ public class NaverNewsSearchClient {
     private final String naverClientId;
     private final String naverClientSecret;
 
-    public NaverNewsSearchClient() {
+    public NaverBlogSearchClient () {
         Dotenv dotenv = Dotenv.load();
         this.naverClientId = dotenv.get("NAVER_CLIENT_ID");
         this.naverClientSecret = dotenv.get("NAVER_CLIENT_SECRET");
     }
 
-    public List<NaverNewsSearchResponseBody.Item> search(String keyword) {
+    public List<NaverSearchResponseBody.Item> search(String keyword) {
         try {
             // keyword -> 복잡한 문자 -> 이 경우에는 요청에서 이슈...
             HttpRequest httpRequest = HttpRequest.newBuilder()
@@ -43,7 +44,7 @@ public class NaverNewsSearchClient {
             );
 //            System.out.println(httpResponse.statusCode());
             String json = httpResponse.body();
-            NaverNewsSearchResponseBody body = objectMapper.readValue(json, NaverNewsSearchResponseBody.class);
+            NaverSearchResponseBody body = objectMapper.readValue(json, NaverSearchResponseBody.class);
             return body.items();
         } catch (Exception e) {
             throw new RuntimeException(e);

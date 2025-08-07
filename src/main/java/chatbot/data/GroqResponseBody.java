@@ -1,4 +1,4 @@
-package chatbot;
+package chatbot.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

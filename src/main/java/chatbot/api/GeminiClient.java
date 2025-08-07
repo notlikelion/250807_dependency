@@ -1,5 +1,6 @@
-package chatbot;
+package chatbot.api;
 
+import chatbot.data.GeminiModel;
 import com.google.genai.Client;
 import com.google.genai.types.Content;
 import com.google.genai.types.GenerateContentConfig;
@@ -14,7 +15,7 @@ public class GeminiClient {
     private final String model;
     private final GenerateContentConfig config;
 
-    GeminiClient(GeminiModel model, String systemInstruction) {
+    public GeminiClient(GeminiModel model, String systemInstruction) {
 //        String apiKey = System.getenv("GEMINI_API_KEY");
         Dotenv dotenv = Dotenv.load();
         String apiKey = dotenv.get("GEMINI_API_KEY");

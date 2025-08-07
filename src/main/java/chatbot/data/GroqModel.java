@@ -1,4 +1,4 @@
-package chatbot;
+package chatbot.data;
 
 public enum GroqModel {
     gpt_oss_120b("openai/gpt-oss-120b");

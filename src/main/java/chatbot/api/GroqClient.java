@@ -1,5 +1,8 @@
-package chatbot;
+package chatbot.api;
 
+import chatbot.data.GroqModel;
+import chatbot.data.GroqRequestBody;
+import chatbot.data.GroqResponseBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cdimascio.dotenv.Dotenv;
 

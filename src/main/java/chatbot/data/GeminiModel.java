@@ -1,4 +1,4 @@
-package chatbot;
+package chatbot.data;
 
 public enum GeminiModel {
     gemini_2_0_flash("gemini-2.0-flash"),
