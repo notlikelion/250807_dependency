@@ -5,6 +5,7 @@ import com.google.genai.types.Content;
 import com.google.genai.types.GenerateContentConfig;
 import com.google.genai.types.GenerateContentResponse;
 import com.google.genai.types.Part;
+import io.github.cdimascio.dotenv.Dotenv;
 
 import java.util.List;
 import java.util.Scanner;
@@ -18,8 +19,11 @@ public class Application {
 //        }
 //        Client client = Client.builder().apiKey(GEMINI_API_KEY).build();
         // https://ai.google.dev/gemini-api/docs/models?hl=ko
+        Dotenv dotenv = Dotenv.load();
+        String systemInstruction = dotenv.get("SYSTEM_INSTRUCTION");
         GeminiClient client = new GeminiClient(GeminiModel.gemini_2_0_flash,
-                "200자 이내로, 중학생도 이해할 수 있게, 꾸미는 문법 없이 평문으로.");
+//                "200자 이내로, 중학생도 이해할 수 있게, 꾸미는 문법 없이 평문으로.");
+                systemInstruction);
         Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.print("질문 : ");
