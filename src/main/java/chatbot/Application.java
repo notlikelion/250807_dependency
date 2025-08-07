@@ -5,6 +5,7 @@ import chatbot.api.GroqClient;
 import chatbot.api.NaverBlogSearchClient;
 import chatbot.api.NaverNewsSearchClient;
 import chatbot.data.GeminiModel;
+import chatbot.data.GroqModel;
 import io.github.cdimascio.dotenv.Dotenv;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class Application {
         String systemInstruction = dotenv.get("SYSTEM_INSTRUCTION");
         GeminiClient geminiClient = new GeminiClient(GeminiModel.gemini_2_0_flash,
                 systemInstruction);
-        GroqClient groqClient = new GroqClient("아랍어로 대답해줘");
+        GroqClient groqClient = new GroqClient("");
         NaverBlogSearchClient blogClient = new NaverBlogSearchClient();
         NaverNewsSearchClient newsClient = new NaverNewsSearchClient();
         Scanner sc = new Scanner(System.in);
@@ -39,8 +40,14 @@ public class Application {
                             .formatted(item.title(), item.description(),
                                     item.link(), item.pubDate()))
                     .toList();
-            System.out.println(blogResult);
-            System.out.println(newsResult);
+//            System.out.println(blogResult);
+//            System.out.println(newsResult);
+            String prompt = "아래의 내용들을 200자 이내로 요약을 해줘. 블로그 : %s. 뉴스 : %s"
+                    .formatted(blogResult, newsResult);
+            String geminiResult = geminiClient.chat(prompt).trim();
+            String groqResult = groqClient.chat(prompt, GroqModel.gpt_oss_120b).trim();
+            System.out.println("제미나이 : %s".formatted(geminiResult));
+            System.out.println("그록(GPT) : %s".formatted(groqResult));
         }
     }
 }
