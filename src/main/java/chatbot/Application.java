@@ -14,13 +14,15 @@ public class Application {
 //        GeminiClient client = new GeminiClient(GeminiModel.gemini_2_0_flash,
 //                systemInstruction);
         // AIClient 추상클래스, 인터페이스
-        GroqClient client = new GroqClient("아랍어로 대답해줘");
+//        GroqClient client = new GroqClient("아랍어로 대답해줘");
+        NaverBlogSearchClient client = new NaverBlogSearchClient();
         Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.print("질문 : ");
             String input = sc.nextLine();
             if (input.equals("종료")) return; // 한줄은 괄호 없어도 된다
-            String text = client.chat(input, GroqModel.gpt_oss_120b);
+//            String text = client.chat(input, GroqModel.gpt_oss_120b);
+            String text = client.search(input);
             System.out.println(text);
         }
     }

@@ -9,7 +9,10 @@ import java.util.List;
  "object":"chat.completion",
  "created":1754545742,
  "model":"openai/gpt-oss-120b",
- "choices":[{"index":0,"message":{"role":"assistant","content":"..."},
+ "choices":[
+    {"index":0,"message":
+        {"role":"assistant","content":"...", "reasoning": "..."}
+    }],
  "logprobs":null,"finish_reason":"stop"}],
  "usage":{"queue_time":0.196781554,"prompt_tokens":80,"prompt_time":0.004677395,"completion_tokens":2591,"completion_time":4.814634258,"total_tokens":2671,"total_time":4.819311653},
  "usage_breakdown":null,
