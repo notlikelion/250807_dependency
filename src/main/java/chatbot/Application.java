@@ -11,15 +11,17 @@ public class Application {
         // https://ai.google.dev/gemini-api/docs/models?hl=ko
         Dotenv dotenv = Dotenv.load();
         String systemInstruction = dotenv.get("SYSTEM_INSTRUCTION");
-        GeminiClient client = new GeminiClient(GeminiModel.gemini_2_0_flash,
-                systemInstruction);
+//        GeminiClient client = new GeminiClient(GeminiModel.gemini_2_0_flash,
+//                systemInstruction);
+        // AIClient 추상클래스, 인터페이스
+        GroqClient client = new GroqClient();
         Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.print("질문 : ");
             String input = sc.nextLine();
             if (input.equals("종료")) return; // 한줄은 괄호 없어도 된다
-            String text = client.chat(input);
-            System.out.println(text);
+//            String text = client.chat(input);
+//            System.out.println(text);
         }
     }
 }
